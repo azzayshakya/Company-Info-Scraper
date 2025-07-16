@@ -2,11 +2,15 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from config import HEADERS
-from scraper.utils import extract_emails, extract_phone_numbers
+from scraper.utils import (
+    extract_emails,
+    extract_phone_numbers,
+    extract_social_links,
+    detect_technologies
+)
 import logging
 
 os.makedirs("logs", exist_ok=True)
-
 logging.basicConfig(filename='logs/error_log.txt', level=logging.ERROR)
 
 def scrape_company_data(url):
@@ -17,16 +21,24 @@ def scrape_company_data(url):
 
         title = soup.title.string.strip() if soup.title else "Unknown"
 
+        meta = soup.find("meta", attrs={"name": "description"})
+        description = meta["content"].strip() if meta and meta.get("content") else "N/A"
+
         text = soup.get_text()
 
         emails = extract_emails(text)
         phones = extract_phone_numbers(text)
+        social_links = extract_social_links(soup)
+        tech_stack = detect_technologies(response.text)
 
         return {
             "url": url,
             "company_name": title,
-            "emails": emails if emails else [],
-            "phones": phones if phones else []
+            "description": description,
+            "emails": emails,
+            "phones": phones,
+            "social_profiles": social_links,
+            "tech_stack": tech_stack
         }
 
     except Exception as e:
