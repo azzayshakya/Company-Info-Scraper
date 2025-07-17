@@ -16,7 +16,7 @@ const NotFoundPage = () => {
         <ExclamationTriangleIcon className="h-[25%] stroke-1 text-slate-100 opacity-40 md:h-[60%]" />
         <h2 className="text-destructive text-xl">404 - Page Not Found</h2>
         <div className="text-center">
-          <p>The page you're looking for could not be found.</p>
+          <p>The page you are looking for could not be found.</p>
         </div>
         <div className="mt-4">
           <Link to="/" className={"text-center"}>
