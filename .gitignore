@@ -12,7 +12,6 @@ env/
 
 output/
 logs/
-*.json
 *.csv
 
 .DS_Store

@@ -92,7 +92,7 @@ const handleSubmit = async (e) => {
         </button>
       </div>
 
-      {loading && <p className="text-info text-sm text-center">⏳ Scraping in progress...</p>}
+      {loading && <p className="text-primary text-sm text-center">⏳ Scraping in progress...</p>}
       {error && <p className="text-destructive text-sm text-center">{error}</p>}
     </form>
   );

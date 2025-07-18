@@ -12,7 +12,7 @@ function ResultCard({ company }) {
       <h3 className="text-xl font-semibold text-primary">{company.company_name}</h3>
 
       {company.error || company.scrape_error ? (
-        <p className="text-destructive mt-2">
+        <p className="text-red-700 mt-2">
           ⚠️ {company.description || company.scrape_error || company.error}
         </p>
       ) : (
